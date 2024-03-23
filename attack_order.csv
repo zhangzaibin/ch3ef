@@ -1,0 +1,35 @@
+Model,total,Open or Not,Link
+claude2,88.06,0,https://claude.ai/
+gpt4,80.28,0,https://openai.com/blog/new-models-and-developer-products-announced-at-devday
+GPT3.5 Turbo,73.4,0,https://openai.com/blog/new-models-and-developer-products-announced-at-devday
+Llama-2-70b-chat-hf,66.24,1,https://huggingface.co/meta-llama/Llama-2-70b-chat-hf
+Llama-2-13b-chat-hf,65.72,1,https://huggingface.co/meta-llama/Llama-2-13b-chat-hf
+gemma-2b-it,50.34,1,https://huggingface.co/google/gemma-2b-it
+internlm-chat-20b,29.82,1,https://huggingface.co/internlm/internlm-chat-20b
+Yi-34B-Chat,23.64,1,https://huggingface.co/01-ai/Yi-34B-Chat
+Qwen1.5-4B-Chat,23.34,1,https://huggingface.co/Qwen/Qwen1.5-4B-Chat
+Yi-6B-Chat,22.56,1,https://huggingface.co/01-ai/Yi-6B-Chat
+internlm-chat-7b,22.2,1,https://huggingface.co/internlm/internlm-chat-7b
+internlm2-chat-7b,20.28,1,https://huggingface.co/internlm/internlm2-chat-7b
+Gemini Pro,20.04,0,https://deepmind.google/technologies/gemini/
+Llama-2-7b-chat-hf,18.24,1,https://huggingface.co/meta-llama/Llama-2-7b-chat-hf
+Qwen1.5-72B-Chat,16.22,1,https://huggingface.co/Qwen/Qwen1.5-72B-Chat
+gemma-7b-it,15.54,1,https://huggingface.co/google/gemma-7b-it
+chatglm3-6b,12.48,1,https://huggingface.co/THUDM/chatglm3-6b
+internlm2-chat-20b,11.06,1,https://huggingface.co/internlm/internlm2-chat-20b
+Qwen-72B-Chat,10.56,1,https://huggingface.co/Qwen/Qwen-72B-Chat
+Mixtral-8x7B-Instruct-v0.1,9.38,1,https://huggingface.co/mistralai/Mixtral-8x7B-Instruct-v0.1
+Qwen-14B-Chat,8.48,1,https://huggingface.co/Qwen/Qwen-14B-Chat
+Qwen1.5-7B-Chat,8.08,1,https://huggingface.co/Qwen/Qwen1.5-7B-Chat
+tulu-2-dpo-70b,7.94,1,https://huggingface.co/allenai/tulu-2-dpo-70b
+qwen1.5_0.5b,7.78,1,https://huggingface.co/Qwen/Qwen1.5-0.5B-Chat
+Qwen-7B-Chat,7.18,1,https://huggingface.co/Qwen/Qwen-7B-Chat
+Qwen1.5-1.8B-Chat,6.96,1,https://huggingface.co/Qwen/Qwen1.5-1.8B-Chat
+Mistral-7B-Instruct-v0.1,6.4,1,https://huggingface.co/mistralai/Mistral-7B-Instruct-v0.1
+Qwen1.5-14B-Chat,6.12,1,https://huggingface.co/Qwen/Qwen1.5-14B-Chat
+tulu-2-dpo-13b,5.64,1,https://huggingface.co/allenai/tulu-2-dpo-13b
+tulu-2-dpo-7b,4.62,1,https://huggingface.co/allenai/tulu-2-dpo-7b
+vicuna-7b-v1.5-16k,4.14,1,https://huggingface.co/lmsys/vicuna-7b-v1.5-16k
+vicuna-33b-v1.3,3.74,1,https://huggingface.co/lmsys/vicuna-33b-v1.3
+vicuna-13b-v1.5-16k,3.66,1,https://huggingface.co/lmsys/vicuna-13b-v1.5-16k
+Mistral-7B-Instruct-v0.2,2.42,1,https://huggingface.co/mistralai/Mistral-7B-Instruct-v0.2

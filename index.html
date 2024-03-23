@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="description"
+        content="Deformable Neural Radiance Fields creates free-viewpoint portraits (nerfies) from casually captured videos.">
+  <meta name="keywords" content="Nerfies, D-NeRF, NeRF">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>SALAD-Bench: A Hierarchical and Comprehensive Safety Benchmark for Large Language Models</title>
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-PYVRSFMDRL"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+
+    gtag('js', new Date());
+
+    gtag('config', 'G-PYVRSFMDRL');
+  </script>
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
+        rel="stylesheet">
+
+  <link rel="stylesheet" href="./static/css/bulma.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+  <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="./static/css/index.css">
+  <link rel="icon" href="./static/images/icon.svg">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css"> <!-- add llj-->>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"><!-- add llj-->>
+
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="./static/js/fontawesome.all.min.js"></script>
+  <script src="./static/js/bulma-carousel.min.js"></script>
+  <script src="./static/js/bulma-slider.min.js"></script>
+  <script src="./static/js/index.js"></script>
+</head>
+<body>
+
+<nav class="navbar" role="navigation" aria-label="main navigation">
+  <div class="navbar-brand">
+    <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+    </a>
+  </div>
+  <div class="navbar-menu">
+    <div class="navbar-start" style="flex-grow: 1; justify-content: center;">
+      <a class="navbar-item" href="https://github.com/adwardlee">
+      <span class="icon">
+          <i class="fas fa-home"></i>
+      </span>
+      </a>
+
+      <div class="navbar-item has-dropdown is-hoverable">
+        <a class="navbar-link">
+          More
+        </a>
+        <div class="navbar-dropdown">
+          <a class="navbar-item" href="./leaderboard.html">
+            🏆Leaderboard
+          </a>
+          <a class="navbar-item" href="https://github.com/OpenSafetyLab/SALAD-BENCH">
+            Github
+        </div>
+      </div>
+    </div>
+
+  </div>
+</nav>
+
+
+<section class="hero">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column has-text-centered">
+          <h1 class="title is-1 publication-title">SALAD-Bench: A Hierarchical and Comprehensive Safety Benchmark for Large Language Models</h1>
+          <div class="is-size-5 publication-authors">
+            <span class="author-block">
+              <a>Lijun Li</a><sup>1,*</sup>,</span>
+            <span class="author-block">
+              <a>Bowen Dong</a><sup>1,2,*</sup>,</span>
+            <span class="author-block">
+              <a>Ruohui Wang</a><sup>1,*</sup>,
+            </span>
+            <span class="author-block">
+              <a>Xuhao Hu</a><sup>1,3,*</sup>,
+            </span>
+            <span class="author-block">
+              <a>Wangmeng Zuo</a><sup>2</sup>,
+            </span>
+            <span class="author-block">
+              <a>Dahua Lin</a><sup>1,4</sup>,
+            </span>
+            <span class="author-block">
+              <a>Yu Qiao</a><sup>1</sup>,
+            </span>
+            <span class="author-block">
+              <a href="https://amandajshao.github.io/">Jing Shao</a><sup>1,&dagger;</sup>
+            </span>
+          </div>
+
+          <div class="is-size-5 publication-authors">
+            <span class="author-block"><sup>1</sup>Shanghai Artificial Intelligence Laboratory</span>
+            <span class="author-block"><sup>2</sup>Harbin Institute of Technology</span>
+			<span class="author-block"><sup>3</sup>Beijing Institute of Technology</span>
+			<span class="author-block"><sup>4</sup>Chinese University of Hong Kong</span>
+      <br> <!-- Newline introduced here -->
+      <span class="author-block"><sup>*</sup>Equal contribution</span>
+      <span class="author-block"><sup>&dagger;</sup>Corresponding author</span>
+          </div>
+
+          <div class="column has-text-centered">
+            <div class="publication-links">
+              <!-- PDF Link. -->
+              <span class="link-block">
+                <a href="https://arxiv.org/abs/2402.05044"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fas fa-file-pdf"></i>
+                  </span>
+                  <span>Paper</span>
+                </a>
+              </span>
+              <!-- youtube Link. -->
+              <span class="link-block">
+                <a href="https://youtu.be/2qZgRlnnYso"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fab fa-youtube"></i>
+                  </span>
+                  <span>Youtube</span>
+                </a>
+              </span>
+              <!-- bilibili Link. -->
+              <span class="link-block">
+                <a href="https://www.bilibili.com/video/BV14z421X7dL/"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                    <i class="fa-brands fa-bilibili"></i>
+                  </span>
+                  <span>Bilibili</span>
+                  </a>
+              </span>
+              <!-- Code Link. -->
+              <span class="link-block">
+                <a href="https://github.com/OpenSafetyLab/SALAD-BENCH"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fab fa-github"></i>
+                  </span>
+                  <span>Code</span>
+                  </a>
+              </span>
+              <!-- Leaderboard Link. -->
+              <span class="link-block">
+                <a href="./leaderboard.html"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                    <i class="fa-solid fa-trophy"></i>
+                  </span>
+                  <span>Leaderboard</span>
+                  </a>
+              </span>
+              <!-- Huggingface Learboard Link. -->
+              <span class="link-block">
+                <a href="https://huggingface.co/spaces/OpenSafetyLab/Salad-Bench-Leaderboard"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span>🤗Leaderboard</span>
+                  </a>
+              </span>
+              <!-- Dataset Link. -->
+              <span class="link-block">
+                <a href="https://huggingface.co/datasets/OpenSafetyLab/Salad-Data"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span>🤗Data</span>
+                  </a>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="hero teaser">
+  <div class="container is-max-desktop">
+    <div class="hero-body">
+      <h2 class="title is-3">Overview</h2>
+      <div class="content has-text-justified">
+          <p>
+            Illustration of question enhancement and evaluation procedures in SALAD-Bench.Base questions are augmented to generate multiple subsets, including multiple-choice questions, attack-enhanced, and defense-enhanced variants. These subsets are instrumental for a comprehensive, multi-level evaluation of LLM safety metrics. The attack-enhanced subset is particularly useful for appraising defense methods, while the defense-enhanced subset is applied to assess attack strategies. Highlighted by the purple circles, the figure contrasts the nuanced safety evaluations of LLMs across different domains, tasks, and categories, underscoring distinct safety performance disparities.
+          </p>
+	    </div>
+      <div style="text-align: center;"> <!-- Centering wrapper for the image -->
+      <img src="./static/images/intro_final.png"
+                 class=""
+                 alt="ViewNeTI pull figure and sample novel view synthesis results."
+                 style="max-width:50%; height:auto;" />
+          </img>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="hero teaser">
+  <div class="container is-max-desktop">
+    <div class="hero-body">
+      <h2 class="title is-3">Comparison with other benchmarks</h2>
+      <div class="content has-text-justified">
+          <p>
+            Comparison between various safety evaluation benchmarks and SALAD-Bench, where Q represents raw questions in question-answering tasks, MCQ means multiple-choice questions, MD means providing multi-dimensional evaluation results for all taxonomies and H indicates manually constructed data from human. 
+          </p>
+	</div>
+      <img src="./static/images/table_comparison.png"
+                 class=""
+                 alt="ViewNeTI pull figure and sample novel view synthesis results."/>
+          </img>
+    </div>
+  </div>
+</section>
+
+<section class="hero teaser">
+  <div class="container is-max-desktop">
+    <div class="hero-body">
+      <h2 class="title is-3">Video</h2>
+      <video id="teaser" controls playsinline height="100%">
+        <source src="./static/videos/SALAD-Bench.mp4"
+                type="video/mp4">
+      </video>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <!-- Abstract. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Abstract</h2>
+        <div class="content has-text-justified">
+          <p>
+            In the rapidly evolving landscape of Large Language Models (LLMs), ensuring robust safety measures is paramount. To meet this crucial need, we propose \emph{SALAD-Bench}, a safety benchmark specifically designed for evaluating LLMs, attack, and defense methods. Distinguished by its breadth, SALAD-Bench transcends conventional benchmarks through its large scale, rich diversity, intricate taxonomy spanning three levels, and versatile functionalities.SALAD-Bench is crafted with a meticulous array of questions, from standard queries to complex ones enriched with attack, defense modifications and multiple-choice.
+          </p>
+          <p>
+            To effectively manage the inherent complexity, we introduce an innovative evaluators: the LLM-based MD-Judge for QA pairs with a particular focus on attack-enhanced queries, ensuring a seamless, and reliable evaluation. Above components extend SALAD-Bench from standard LLM safety evaluation to both LLM attack and defense methods evaluation, ensuring the joint-purpose utility. Our extensive experiments shed light on the resilience of LLMs against emerging threats and the efficacy of contemporary defense tactics.
+          </p>
+        </div>
+      </div>
+    </div>
+    <!--/ Abstract. -->
+  </div>
+</section>
+
+
+<section class="section">
+  <div class="container is-max-desktop">
+
+    <div class="columns is-centered">
+
+      <!-- Visual Effects. -->
+      <div class="column">
+        <div class="content">
+          <h2 class="title is-3">Safety categories</h2>
+          <p>
+            Three levels and 65 categories focused on safety issues.
+          </p>
+          <img src="./static/images/categories.png"
+                 class=""
+                 alt="ViewNeTI pull figure and sample novel view synthesis results."/>
+          </img>
+        </div>
+      </div>
+      <!--/ Visual Effects. -->
+
+      <!-- Matting. -->
+      <div class="column">
+        <h2 class="title is-3">Data distribution</h2>
+        <div class="columns is-centered">
+          <div class="column content">
+            <p>
+              Data source of base set in SALAD-Bench.
+            </p>
+            <img src="./static/images/data_distribution.png"
+                 class=""
+                 alt="ViewNeTI pull figure and sample novel view synthesis results."/>
+          </img>
+          </div>
+
+        </div>
+      </div>
+    </div>
+    <!--/ Matting. -->
+
+    <!-- Data collection. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-full-width">
+        <h2 class="title is-3">Question processing</h2>
+        <div class="content has-text-justified">
+          <p>
+            To tackle content duplication, we use the Locality-Sensitive Hashing algorithm combined with Sentence-BERT for sentence vector embeddings. To address the issue of benign samples and minimize manual review costs, we utilized the reward model, pre-trained on SafeRLHF, to assess the safety of each data sample. 
+          </p>
+          <p>
+            To categorize questions from public datasets into SALAD-Bench's category-level taxonomies, we employ LLMs for automated labeling through in-context learning and consensus voting. We select Mixtral-8x7B-Instruct, Mistral-7B-Instruct, and TuluV2-dpo-70B for the task.
+          </p>
+        </div>
+        <div class="content has-text-centered">
+          <img src="./static/images/auto_labeling.png"
+                 class=""
+                 alt="ViewNeTI pull figure and sample novel view synthesis results."
+                 style="max-width:53%; height:auto;" />
+          </img>
+        </div>
+        <!--/ Re-rendering. -->
+
+      </div>
+    </div>
+    <!--/ Animation. -->
+	
+	<div class="columns is-centered has-text-centered">
+      <div class="column is-full-width">
+        <h2 class="title is-3">Question enhancement</h2>
+
+        <div class="content has-text-justified">
+			<p>
+        Construction of the attack-enhanced dataset. (a)Generate response on all candidate models. (b)Filter questions with high rejection rates. (c)Enhance remaining questions with attack methods. (d) Generate on all models, evaluate, and keep enhanced questions with lowest safety rates.
+      </p>
+        </div>
+		<div class="content has-text-centered">
+          <img src="./static/images/attack_construction.png"
+                 class=""
+                 alt="ViewNeTI pull figure and sample novel view synthesis results."/>
+          </img>
+        </div>
+		<div class="content has-text-justified">
+			<p>
+        Construction pipeline of the defense-enhanced dataset. (a) Generate response on all candidate models. (b) Keep questions with  high rejection rates. (c) Attack each question and keep failed ones. (d) Enhance remaining questions with defense methods.
+          </p>
+        </div>
+		<div class="content has-text-centered">
+          <img src="./static/images/defense_construction.png"
+                 class=""
+                 alt="ViewNeTI pull figure and sample novel view synthesis results."/>
+          </img>
+        </div>
+    <div class="content has-text-justified">
+      <p>
+        For each question, we also generate multiple safe responses and unsafe responses as candidates. The safe and unsafe responses are generated using GPT-4 and fine-tuned GPT respectively.
+          </p>
+        </div>    
+      </div>
+    </div>
+	
+
+
+  </div>
+</section>
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <!-- MD-Judge. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-full-width">
+        <h2 class="title is-3">MD-Judge for QA pairs</h2>
+        <div class="content has-text-justified">
+          <p>
+            Previous LLM safety benchmarks usually utilize 1) keyword matching, 2) moderation classifiers and 3) GPT to conduct safety evaluation. However, keyword matching-based evaluator struggles with various outputs from LLMs; moderation classifiers only focus on a narrow spectrum of safety threats; GPT incurs much extra cost to call APIs. We use public and self-generated data to fine-tune an LLM-based classifier from Mistral-7B.During fine-tuning, we propose a safety evaluation template to reformat question-answer pairs for MD-Judge predictions, as shown in the Figure.
+          </p>
+        </div>
+        <div class="content has-text-centered">
+          <img src="./static/images/eval_example.png"
+                 class=""
+                 alt="ViewNeTI pull figure and sample novel view synthesis results."
+                 style="max-width:50%; height:auto;" />
+          </img>
+        </div>
+      </div>
+    </div>
+    <!--/ MD-Judge. -->
+
+    <!-- MCQ-Judge -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-full-width">
+        <h2 class="title is-3">MCQ-Judge</h2>
+        <div class="content has-text-justified">
+          <p>
+            We also introduce MCQ-Judge, which leverages in-context learning with regex parsing to efficiently fetch the answers. 
+          </p>
+        </div>
+        <div class="content has-text-centered">
+          <img src="./static/images/MCQ-JUDGE.png"
+                 class=""
+                 alt="ViewNeTI pull figure and sample novel view synthesis results."
+                 style="max-width:50%; height:auto;" />
+          </img>
+        </div>
+      </div>
+    </div>
+    <!--/ MCQ-Judge -->
+  </div>
+</section>
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <!-- MD-Judge. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-full-width">
+        <h2 class="title is-3">Results</h2>
+        <div class="content has-text-justified">
+          <h3 class="subtitle is-5">Safety Rate</h3> <!-- Added subtitle for Safety Rate -->
+          <p>
+            Overall safety rate results can be seen in the <a href="./leaderboard.html">leaderboard.</a>
+            Safety rate on specific domain can be seen in the <a href="https://huggingface.co/spaces/OpenSafetyLab/Salad-Bench-Leaderboard">huggingface.</a>
+          </p>
+          <h3 class="subtitle is-5">Attack Comparison</h3> <!-- Added subtitle for Attack Comparison -->
+          <p>
+            Attack success rate comparison of attack methods
+            <div class="content has-text-centered">
+              <img src="./static/images/attack_algorithms_comp.png"
+                     class=""
+                     alt="ViewNeTI pull figure and sample novel view synthesis results."
+                     style="max-width:50%; height:auto;" />
+            </div>
+          </p>
+          <h3 class="subtitle is-5">Defense Comparison</h3> <!-- Added subtitle for Attack Comparison -->
+          <p>
+            Attack success rate comparison of defense methods on attack-enhanced subset
+            <div class="content has-text-centered">
+              <img src="./static/images/defense_comp.png"
+                     class=""
+                     alt="ViewNeTI pull figure and sample novel view synthesis results."
+                     style="max-width:90%; height:auto;" />
+            </div>
+          </p>
+        </div>
+      </div>
+    </div>
+    <!--/ MD-Judge. -->
+  </div>
+</section>
+
+
+<section class="section" id="BibTeX">
+  <div class="container is-max-desktop content">
+    <h2 class="title">BibTeX</h2>
+    <pre><code>@misc{li2024saladbench,
+      title={SALAD-Bench: A Hierarchical and Comprehensive Safety Benchmark for Large Language Models}, 
+      author={Lijun Li and Bowen Dong and Ruohui Wang and Xuhao Hu and Wangmeng Zuo and Dahua Lin and Yu Qiao and Jing Shao},
+      year={2024},
+      eprint={2402.05044},
+      archivePrefix={arXiv},
+      primaryClass={cs.CL}
+}</code></pre>
+  </div>
+</section>
+
+
+<footer class="footer">
+  <div class="container">
+    <div class="columns is-centered">
+      <div class="column is-8">
+        <div class="content">
+          <p>
+          The template for this page is designed in <a href="https://github.com/adwardlee/view_renderih/">view_renderih</a>.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
