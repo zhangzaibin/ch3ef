@@ -105,20 +105,28 @@
         src="https://img.shields.io/badge/Project%20page-20B2AA?style=for-the-badge" alt="project_page"
         class="img-fluid"></a>
     </div>
+    <div class="btn-group" role="group" id="LevelSelector">
+      <input type="radio" class="btn-check" name="levelradio" id="A1">
+      <label class="btn btn-outline-primary" for="A1">A1</label>
+      <input type="radio" class="btn-check" name="levelradio" id="A2">
+      <label class="btn btn-outline-primary" for="A2">A2</label>
+      <input type="radio" class="btn-check" name="levelradio" id="A3" checked>
+      <label class="btn btn-outline-primary" for="A3">A3</label>
+    </div>
+
     <div class="btn-group" role="group" id="Benchmark">
-      <input type="radio" class="btn-check" name="btnradio" id="Base" checked>
+      <!-- <input type="radio" class="btn-check" name="btnradio" id="Base" checked>
       <label class="btn btn-outline-primary" for="Base">Base</label>
       <input type="radio" class="btn-check" name="btnradio" id="Attack-enhanced"> 
       <label class="btn btn-outline-primary" for="Attack-enhanced">Attack-enhanced</label>
       <input type="radio" class="btn-check" name="btnradio" id="Multiple-choice"> 
       <label class="btn btn-outline-primary" for="Multiple-choice">Multiple-choice</label>
       <input type="radio" class="btn-check" name="btnradio" id="Average"> 
-      <label class="btn btn-outline-primary" for="Average">Average</label>
+      <label class="btn btn-outline-primary" for="Average">Average</label> -->
     </div>
     <!-- <div  id="chart" style="width:100%;height:400px;"></div> -->
     <div class="container-fluid d-flex flex-row flex-nowrap">
       <div class="container-fluid d-flex flex-column align-items-center">
-        <label for="origin" class="text-danger mb-3">Ranking</label>
         <table id="origin" class="table table-responsive table-striped table-bordered flex-shrink-1 border border-danger border-3"></table>
       </div>
     </div>
@@ -137,9 +145,9 @@
   <script>
     const originTable = document.getElementById('origin');
     const benchmarkRadio = document.getElementById('Benchmark');
-    const chartDom = document.getElementById('chart');
+    // const chartDom = document.getElementById('chart');
     
-    // var myChart = echarts.init(chartDom);
+    // // var myChart = echarts.init(chartDom);
 
     var option = {
       legend: {
@@ -247,17 +255,66 @@
     
     const theaders = [
       'Model',
-      'Safety rate%',
+      'Acc%',
     ]
 
     var data = [];
 
-    var currentUrls = ['base_order.csv', 'attack_order.csv'];
-    var currentUrl = 'base_order.csv'
+    document.addEventListener('DOMContentLoaded', function() {
+      var benchmarkButtons = {
+        'A1': ['CIFAR10', 'Omnibenchmark', 'VOC2012', 'Flickr30k', 'FSC147'],
+        'A2': ['ScienceQA', 'MMBench', 'SEEDBench-v2', 'MME', 'MMMU'],
+        'A3': ['Helpful', 'Honest', 'Harmless']
+      };
 
-    // updateTableWithAverageData(originTable, currentUrls, 'pass@1_base');
-    // updateTableWithAverageData(plusedTable, currentUrls, 'pass@1_plus');
-    // updateChartWithAverageData(currentUrls);
+      // Function to update benchmark buttons
+      function updateBenchmarkButtons(level) {
+        var benchmarkGroup = document.getElementById('Benchmark');
+        benchmarkGroup.innerHTML = ''; // Clear previous buttons
+
+        benchmarkButtons[level].forEach(function(benchmark) {
+          var input = document.createElement('input');
+          input.type = 'radio';
+          input.className = 'btn-check';
+          input.name = 'benchmarkradio';
+          input.id = benchmark;
+          
+          var label = document.createElement('label');
+          label.className = 'btn btn-outline-primary';
+          label.htmlFor = benchmark;
+          label.textContent = benchmark;
+          
+          benchmarkGroup.appendChild(input);
+          benchmarkGroup.appendChild(label);
+          label.addEventListener('click', function() {
+            currentUrl = './static/data/' + benchmark + '.csv';
+            updateTable(originTable, currentUrl, 'total');
+            console.log(benchmark + ' clicked');
+          });
+        });
+
+        // Default to first benchmark button
+        if (benchmarkButtons[level].length > 0) {
+          document.getElementById(benchmarkButtons[level][0]).checked = true;
+          // Trigger the benchmark selection event here if needed
+        }
+      }
+
+      // Event listeners for A level buttons
+      Object.keys(benchmarkButtons).forEach(function(level) {
+        document.getElementById(level).addEventListener('change', function() {
+          updateBenchmarkButtons(level);
+        });
+      });
+
+      // Initialize with A1 benchmarks
+      updateBenchmarkButtons('A3');
+      benchmark = 'Helpful'
+      currentUrl = './static/data/' + benchmark + '.csv';
+      updateTable(originTable, currentUrl, 'total');
+      console.log(benchmark + ' clicked');
+    });
+
 
     function clearTable() {
       originTable.innerHTML = '';
@@ -342,15 +399,15 @@
       });
     }
 
-    function updateTableWithAverageData(table, urls, sortColumn) {
-      clearTable();
-      getAveragedData(urls, sortColumn).then(function(averagedData) {
-        averagedData.sort(function (a, b) {
-          return b[sortColumn] - a[sortColumn];
-        });
-        displayTable(table, averagedData, sortColumn);
-      });
-    }
+    // function updateTableWithAverageData(table, urls, sortColumn) {
+    //   clearTable();
+    //   getAveragedData(urls, sortColumn).then(function(averagedData) {
+    //     averagedData.sort(function (a, b) {
+    //       return b[sortColumn] - a[sortColumn];
+    //     });
+    //     displayTable(table, averagedData, sortColumn);
+    //   });
+    // }
 
     function updateChart(url) {
       clearChart();
@@ -439,19 +496,19 @@
         modelCell.appendChild(modelLink);
         modelCell.classList.add('d-flex');
         modelCell.classList.add('flex-nowrap');
-        var opendata = row['Open or Not'];
-        if (opendata == 1) {
-          // add a symbol to indicate the model is fully open-sourced
-          var promptedSymbol = document.createElement('span');
-          promptedSymbol.textContent = '📖'
-          modelCell.appendChild(promptedSymbol);
-        } else if (opendata == 0) {
-          // add a symbol to indicate the model is partially open-sourced
-          // i.e., a subset of the model implementation is close-sourced
-          var promptedSymbol = document.createElement('span');
-          promptedSymbol.textContent = '📕';
-          modelCell.appendChild(promptedSymbol);
-        }
+        // var opendata = row['Open or Not'];
+        // if (opendata == 1) {
+        //   // add a symbol to indicate the model is fully open-sourced
+        //   var promptedSymbol = document.createElement('span');
+        //   promptedSymbol.textContent = '📖'
+        //   modelCell.appendChild(promptedSymbol);
+        // } else if (opendata == 0) {
+        //   // add a symbol to indicate the model is partially open-sourced
+        //   // i.e., a subset of the model implementation is close-sourced
+        //   var promptedSymbol = document.createElement('span');
+        //   promptedSymbol.textContent = '📕';
+        //   modelCell.appendChild(promptedSymbol);
+        // }
         dataRow.appendChild(modelCell);
         var passCell = document.createElement('td');
         if (table == originTable) {
@@ -464,34 +521,30 @@
       table.appendChild(tbody);
     }
 
-    const avergeRadio = document.getElementById('Average');
-    const BaseRadio = document.getElementById('Base');
-    const AttackRadio = document.getElementById('Attack-enhanced');
-    const McqRadio = document.getElementById('Multiple-choice');
 
-    avergeRadio.addEventListener('click', function () {
-      currentUrls = ['base_order.csv', 'attack_order.csv', 'MCQ_order.csv'];
-      updateTableWithAverageData(originTable, currentUrls, 'total');
-      // updateChartWithAverageData(currentUrls);
-    });
+    // avergeRadio.addEventListener('click', function () {
+    //   currentUrls = ['base_order.csv', 'attack_order.csv', 'MCQ_order.csv'];
+    //   updateTableWithAverageData(originTable, currentUrls, 'total');
+    //   // updateChartWithAverageData(currentUrls);
+    // });
 
-    AttackRadio.addEventListener('click', function () {
-      currentUrl = 'attack_order.csv';
-      updateTable(originTable, currentUrl, 'total');
-      // updateChart(currentUrl);
-    });
+    // AttackRadio.addEventListener('click', function () {
+    //   currentUrl = 'attack_order.csv';
+    //   updateTable(originTable, currentUrl, 'total');
+    //   // updateChart(currentUrl);
+    // });
 
-    McqRadio.addEventListener('click', function () {
-      currentUrl = 'MCQ_order.csv';
-      updateTable(originTable, currentUrl, 'total');
-      // updateChart(currentUrl);
-    });
+    // McqRadio.addEventListener('click', function () {
+    //   currentUrl = 'MCQ_order.csv';
+    //   updateTable(originTable, currentUrl, 'total');
+    //   // updateChart(currentUrl);
+    // });
 
-    BaseRadio.addEventListener('click', function () {
-      currentUrl = 'base_order.csv';
-      updateTable(originTable, currentUrl, 'total');
-      // updateChart(currentUrl);
-    });
+    // BaseRadio.addEventListener('click', function () {
+    //   currentUrl = 'base_order.csv';
+    //   updateTable(originTable, currentUrl, 'total');
+    //   // updateChart(currentUrl);
+    // });
 
 
     function displayChart(data, url) {
@@ -606,23 +659,7 @@
       option && myChart.setOption(option);
     }
 
-    // window.addEventListener("resize", () => {
-    //   this.myChart.resize();
-    // });
-  
-
-    document.addEventListener("DOMContentLoaded", function() {
-    // Assuming 'updateTable' and 'updateChart' are functions you've defined earlier in your script
-    var originTable = document.getElementById('origin');
-    var currentUrl = 'base_order.csv';
-
-    updateTable(originTable, currentUrl, 'total');
-    // updateChart(currentUrl);
-
-    // You might not need to simulate a click on the 'Base' button if the above functions 
-    // properly load and display your data.
-    // document.getElementById('Base').click(); // This line might be unnecessary.
-  });
+    
   </script>
 
 </body>

@@ -1,17 +1,8 @@
-# SALAD-Bench
+# Assessment of Multimodal Large Language Models in Alignment with Human Values
 
-This is the repository that contains source code for SALAD-Bench.
-
-If you find SALAD-Bench useful for your work please cite:
+If you find this work useful, please cite:
 ```
-@misc{li2024saladbench,
-      title={SALAD-Bench: A Hierarchical and Comprehensive Safety Benchmark for Large Language Models}, 
-      author={Lijun Li and Bowen Dong and Ruohui Wang and Xuhao Hu and Wangmeng Zuo and Dahua Lin and Yu Qiao and Jing Shao},
-      year={2024},
-      eprint={2402.05044},
-      archivePrefix={arXiv},
-      primaryClass={cs.CL}
-}
+TODO
 ```
 
 We borrow the code from [Nerfies website](https://nerfies.github.io)
